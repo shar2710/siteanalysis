@@ -21,10 +21,11 @@ with open(r"C:\Users\sejal\OneDrive\Documents\NOTES\python projects\siteanalysis
 #SAVING THE NEW text FILE
 newfile=r"C:\Users\sejal\OneDrive\Documents\NOTES\python projects\siteanalysis\newfile.txt"
 
-#converting newfile into a dataframe
-df=pd.DataFrame({'title':[newfile]})
-df.to_csv(r"C:\Users\sejal\OneDrive\Documents\NOTES\python projects\siteanalysis\inputsite.txt",index=False)
-
+#converting newfile into a dataframe and adding text and title columns
+df=pd.DataFrame(columns=['title','text'])
+df['title']=[title]
+df['text']=[text]
+df.to_csv(r"C:\Users\sejal\OneDrive\Documents\NOTES\python projects\siteanalysis\inputsite.csv",index=False)
 
 
 
