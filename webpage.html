@@ -1,0 +1,19 @@
+<!--THIS WEBPAGE WILL CONTAIN A INPUT BOX AND A BUTTON TO SUBMIT THE INPUT LINK ...the code is from the sitecode.py 
+#AND A DIV TO DISPLAY THE OUTPUT OF THE LINK-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Webpage</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#submit").click(function(){
+                var link = $("#link").val();
+                $.post("sitecode.py", {link: link}, function(data){
+                    $("#output").html(data);
+                });
+            });
+        });
+    </script>
+</html>
+     
