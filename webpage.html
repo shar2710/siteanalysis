@@ -3,35 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Sentiment Analysis Tool</title>
-    <script>
-        function submitData() {
-            // Get the user input
-            var userInput = document.getElementById("url").value;
-
-            // Send the user input to the server using AJAX (explained later)
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/analyze", true); // Replace "/analyze" with your actual Python endpoint
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    // Display a success message or update the page with the results (explained later)
-                    document.getElementById("result").innerHTML = "Analysis complete! Check the output.csv file.";
-                } else {
-                    document.getElementById("result").innerHTML = "Error: " + xhr.statusText;
-                }
-            };
-            xhr.send("text=" + encodeURIComponent(userInput));
-        }
-    </script>
+<!--creating a input box for the url user input in sitecode.py and a submit button-->
+<!--the url is now sent to the sitecode.py and analysis is performed there-->
 </head>
 <body>
-    <h1>Sentiment Analysis Tool</h1>
-    <p>Enter some text to analyze:</p>
-    <input type="text" id="userText" placeholder="Enter text here">
-    <button onclick="submitData()">Analyze</button>
-    <br>
-    <div id="result"></div>
-
-    <a href="outputsite.csv" download>Download Output (outputsite.csv)</a>
+    <form action="sitecode.py" method="post">
+        <input type="text" name="url" placeholder="Enter URL">
+        <input type="submit" value="Submit">
+    </form>
+<!--now the output from output.csv file is displayed -->
+    <h1>Output</h1>
+    <table border="1">
+        <tr>
+            <th>Review</th>
+            <th>Sentiment</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
-</html>
+
