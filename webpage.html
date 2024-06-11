@@ -1,21 +1,37 @@
-<!--THIS WEBPAGE WILL CONTAIN A INPUT BOX AND A BUTTON TO SUBMIT THE INPUT LINK ...the code is from the sitecode.py 
-#AND A DIV TO DISPLAY THE OUTPUT OF THE LINK-->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Webpage</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Sentiment Analysis Tool</title>
     <script>
-        $(document).ready(function(){
-            $("#submit").click(function(){
-                var link = $("#link").val();
-                $.post("sitecode.py", {link: link}, function(data){
-                    $("#output").html(data);
-                });
-            });
-        });
-    </script>
+        function submitData() {
+            // Get the user input
+            var userInput = document.getElementById("url").value;
 
-    
+            // Send the user input to the server using AJAX (explained later)
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/analyze", true); // Replace "/analyze" with your actual Python endpoint
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Display a success message or update the page with the results (explained later)
+                    document.getElementById("result").innerHTML = "Analysis complete! Check the output.csv file.";
+                } else {
+                    document.getElementById("result").innerHTML = "Error: " + xhr.statusText;
+                }
+            };
+            xhr.send("text=" + encodeURIComponent(userInput));
+        }
+    </script>
+</head>
+<body>
+    <h1>Sentiment Analysis Tool</h1>
+    <p>Enter some text to analyze:</p>
+    <input type="text" id="userText" placeholder="Enter text here">
+    <button onclick="submitData()">Analyze</button>
+    <br>
+    <div id="result"></div>
+
+    <a href="outputsite.csv" download>Download Output (outputsite.csv)</a>
+</body>
 </html>
-     
