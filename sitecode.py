@@ -43,7 +43,7 @@ def count_syllables(word):
     return count
 
 
-# performing sentiment analysis on the data
+
 # IMPORTING POSITIVE AND NEGATIVE WORDS
 positive_words = set()
 negative_words = set()
@@ -101,14 +101,10 @@ with open(newfile, 'r', encoding='utf-8') as f:
         negative_score.append(neg)
         polarity_score.append((pos - neg) / (pos + neg + 0.000001))
         subjectivity_score.append((pos + neg) / (len(df['title'][i].split()) + 0.000001))
-                #readability analysis
         avg_sentence_length.append(len(words)/sentence_count)
         percentage_complex_words.append(complex_words/len(words))
         fog_index.append(0.4*(avg_sentence_length[-1]+percentage_complex_words[-1]))
-        #average word per sentence
         avg_word_length.append(sum(len(word) for word in words)/len(words))
-        #syllable per word
-        syllable_per_word.append(syllable_count/len(words))
         #syllable per word
         syllable_per_word.append(syllable_count/len(words))
         #average word length
@@ -123,26 +119,7 @@ with open(newfile, 'r', encoding='utf-8') as f:
 '''
 STEP 3
 OUTPUT DATA STRUCTURE
-
-print(len(positive_score))
-print(len(negative_score))
-print(len(polarity_score))
-print(len(subjectivity_score))
-print(len(avg_sentence_length))
-print(len(percentage_complex_words))
-print(len(fog_index))
-print(len(complex_word_count))
-
-print(len(word_count))
-print(len(syllable_per_word))
-print(len(personal_pronouns))
-print(len(avg_word_length))
-
 '''
-
-
-
-
 word_count = len(words)
 complex_word_count=len(complex_word_count)
 syllable_per_word=len(words)/syllable_count
