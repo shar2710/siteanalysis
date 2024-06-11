@@ -68,7 +68,6 @@ data={'Link': url,
     'Polarity Score': polarity_score,
     'Subjectivity Score': subjectivity_score}
 
-
 output_df = pd.DataFrame(data)
 output_df.to_csv(r"C:\Users\sejal\OneDrive\Documents\NOTES\python projects\siteanalysis\outputsite.csv", mode='a', index=False, header=False)
 print("success")
